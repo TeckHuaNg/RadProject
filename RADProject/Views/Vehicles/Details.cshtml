@@ -1,0 +1,66 @@
+﻿@model RADProject.Models.Vehicle
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Vehicle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MakeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MakeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModelId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModelId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SoldDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoldDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayFor(model => model.ImageUrl)
+        </dt>
+
+        <dd>
+            <img src="@Model.ImageUrl" alt="@Model.ImageUrl" />
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VehicleId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

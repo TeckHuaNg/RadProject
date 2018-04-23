@@ -1,0 +1,64 @@
+﻿@model IEnumerable<RADProject.Models.Vehicle>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MakeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModelId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoldDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Make.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoldDate)
+        </td>
+        <td>
+            <img src="@item.ImageUrl" alt="Car Image" class="img-responsive" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VehicleId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VehicleId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VehicleId })
+        </td>
+    </tr>
+}
+
+</table>
