@@ -12,7 +12,7 @@ namespace RADProject.Controllers
 {
     public class VehicleTypesController : Controller
     {
-        private VehicleModel db = new VehicleModel();
+        private Data db = new Data();
 
         // GET: VehicleTypes
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace RADProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VehicleTypeId,Name")] VehicleType vehicleType)
+        public ActionResult Create([Bind(Include = "VehicleTypeId,typeName")] VehicleType vehicleType)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace RADProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VehicleTypeId,Name")] VehicleType vehicleType)
+        public ActionResult Edit([Bind(Include = "VehicleTypeId,typeName")] VehicleType vehicleType)
         {
             if (ModelState.IsValid)
             {

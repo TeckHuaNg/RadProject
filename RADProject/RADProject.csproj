@@ -145,7 +145,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MakesController.cs" />
     <Compile Include="Controllers\VehicleModelsController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
@@ -153,10 +152,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Data.cs" />
     <Compile Include="Models\Make.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Models\Vehicle.cs" />
-    <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Models\VehicleType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -183,7 +182,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -200,25 +201,24 @@
     <Content Include="Views\Makes\Details.cshtml" />
     <Content Include="Views\Makes\Edit.cshtml" />
     <Content Include="Views\Makes\Index.cshtml" />
-    <Content Include="Views\Vehicles\Create.cshtml" />
-    <Content Include="Views\Vehicles\Delete.cshtml" />
-    <Content Include="Views\Vehicles\Details.cshtml" />
-    <Content Include="Views\Vehicles\Edit.cshtml" />
-    <Content Include="Views\Vehicles\Index.cshtml" />
-    <Content Include="Views\VehicleTypes\Create.cshtml" />
-    <Content Include="Views\VehicleTypes\Delete.cshtml" />
-    <Content Include="Views\VehicleTypes\Details.cshtml" />
-    <Content Include="Views\VehicleTypes\Edit.cshtml" />
-    <Content Include="Views\VehicleTypes\Index.cshtml" />
     <Content Include="Views\VehicleModels\Create.cshtml" />
     <Content Include="Views\VehicleModels\Delete.cshtml" />
     <Content Include="Views\VehicleModels\Details.cshtml" />
     <Content Include="Views\VehicleModels\Edit.cshtml" />
     <Content Include="Views\VehicleModels\Index.cshtml" />
+    <Content Include="Views\VehicleTypes\Create.cshtml" />
+    <Content Include="Views\VehicleTypes\Delete.cshtml" />
+    <Content Include="Views\VehicleTypes\Details.cshtml" />
+    <Content Include="Views\VehicleTypes\Edit.cshtml" />
+    <Content Include="Views\VehicleTypes\Index.cshtml" />
+    <Content Include="Views\Vehicles\Create.cshtml" />
+    <Content Include="Views\Vehicles\Delete.cshtml" />
+    <Content Include="Views\Vehicles\Details.cshtml" />
+    <Content Include="Views\Vehicles\Edit.cshtml" />
+    <Content Include="Views\Vehicles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\VehicleModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

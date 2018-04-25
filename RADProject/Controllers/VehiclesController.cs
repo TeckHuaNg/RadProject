@@ -12,12 +12,13 @@ namespace RADProject.Controllers
 {
     public class VehiclesController : Controller
     {
-        private VehicleModel db = new VehicleModel();
+        private Data db = new Data();
 
         // GET: Vehicles
         public ActionResult Index()
         {
-            return View(db.Vehicles.ToList());
+            var vehicles = db.Vehicles.Include(v => v.Make).Include(v => v.Model);
+            return View(vehicles.ToList());
         }
 
         // GET: Vehicles/Details/5
@@ -38,8 +39,8 @@ namespace RADProject.Controllers
         // GET: Vehicles/Create
         public ActionResult Create()
         {
-            ViewBag.MakeId = new SelectList(db.Makes.OrderBy(m => m.Name), "MakeId", "Name");
-            ViewBag.ModelId = new SelectList(db.Models.OrderBy(m => m.Name), "ModelId", "Name");
+            ViewBag.MakeId = new SelectList(db.Makes, "MakeId", "makeName");
+            ViewBag.ModelId = new SelectList(db.Models, "ModelId", "ModelName");
             return View();
         }
 
@@ -48,19 +49,21 @@ namespace RADProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "VehicleId,MakeId,ModelId,Year,Price,SoldDate")] Vehicle vehicle)
+        public ActionResult Create([Bind(Include = "VehicleId,MakeId,ModelId,modelYear,Price,SoldDate,ImageUrl")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
-                if(Request.Files.Count > 0)
+                // check for a new shoe image upload
+                if (Request.Files.Count > 0)
                 {
                     var file = Request.Files[0];
 
-                    if(file.FileName != null && file.ContentLength > 0)
+                    if (file.FileName != null && file.ContentLength > 0)
                     {
                         string path = Server.MapPath("~/Content/Images/") + file.FileName;
                         file.SaveAs(path);
 
+                        // add path to image name before saving
                         vehicle.ImageUrl = "/Content/Images/" + file.FileName;
                     }
                 }
@@ -70,8 +73,8 @@ namespace RADProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MakeId = new SelectList(db.Makes.OrderBy(m => m.Name), "MakeId", "Name");
-            ViewBag.ModelId = new SelectList(db.Models.OrderBy(m => m.Name), "ModelId", "Name");
+            ViewBag.MakeId = new SelectList(db.Makes, "MakeId", "makeName", vehicle.MakeId);
+            ViewBag.ModelId = new SelectList(db.Models, "ModelId", "ModelName", vehicle.ModelId);
             return View(vehicle);
         }
 
@@ -87,8 +90,8 @@ namespace RADProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MakeId = new SelectList(db.Makes.OrderBy(m => m.Name), "MakeId", "Name", vehicle.MakeId);
-            ViewBag.ModelId = new SelectList(db.Models.OrderBy(m => m.Name), "ModelId", "Name", vehicle.ModelId);
+            ViewBag.MakeId = new SelectList(db.Makes, "MakeId", "makeName", vehicle.MakeId);
+            ViewBag.ModelId = new SelectList(db.Models, "ModelId", "ModelName", vehicle.ModelId);
             return View(vehicle);
         }
 
@@ -97,10 +100,11 @@ namespace RADProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "VehicleId,MakeId,ModelId,Year,Price,SoldDate")] Vehicle vehicle)
+        public ActionResult Edit([Bind(Include = "VehicleId,MakeId,ModelId,modelYear,Price,SoldDate,ImageUrl")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
+                // check for a new shoe image upload
                 if (Request.Files.Count > 0)
                 {
                     var file = Request.Files[0];
@@ -110,6 +114,7 @@ namespace RADProject.Controllers
                         string path = Server.MapPath("~/Content/Images/") + file.FileName;
                         file.SaveAs(path);
 
+                        // add path to image name before saving
                         vehicle.ImageUrl = "/Content/Images/" + file.FileName;
                     }
                 }
@@ -118,6 +123,8 @@ namespace RADProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.MakeId = new SelectList(db.Makes, "MakeId", "makeName", vehicle.MakeId);
+            ViewBag.ModelId = new SelectList(db.Models, "ModelId", "ModelName", vehicle.ModelId);
             return View(vehicle);
         }
 

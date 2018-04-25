@@ -9,7 +9,6 @@ namespace RADProject.Models
     [Table("Vehicle")]
     public partial class Vehicle
     {
-        
         public int VehicleId { get; set; }
 
         [Display(Name = "Make")]
@@ -18,20 +17,23 @@ namespace RADProject.Models
         [Display(Name = "Model")]
         public int ModelId { get; set; }
 
-        public short Year { get; set; }
+
+        [Display(Name = "Year")]
+        public short modelYear { get; set; }
 
         public int Price { get; set; }
 
-        [Display(Name = "Sold Date")]
         [Column(TypeName = "date")]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [Display(Name = "Sold Date")]
+        [DisplayFormat(DataFormatString ="{0:MM/dd/yyyy}")]
         public DateTime? SoldDate { get; set; }
 
-        [StringLength(1024)]
         [Display(Name = "Image")]
+        [StringLength(1024)]
         public string ImageUrl { get; set; }
 
-        public virtual Model Model { get; set; }
         public virtual Make Make { get; set; }
+
+        public virtual Model Model { get; set; }
     }
 }

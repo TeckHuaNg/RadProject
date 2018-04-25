@@ -12,12 +12,13 @@ namespace RADProject.Controllers
 {
     public class VehicleModelsController : Controller
     {
-        private VehicleModel db = new VehicleModel();
+        private Data db = new Data();
 
         // GET: VehicleModels
         public ActionResult Index()
         {
-            return View(db.Models.ToList());
+            var models = db.Models.Include(m => m.VehicleType);
+            return View(models.ToList());
         }
 
         // GET: VehicleModels/Details/5
@@ -38,7 +39,7 @@ namespace RADProject.Controllers
         // GET: VehicleModels/Create
         public ActionResult Create()
         {
-            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes.OrderBy(v => v.Name), "VehicleTypeId", "Name");
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "VehicleTypeId", "typeName");
             return View();
         }
 
@@ -47,7 +48,7 @@ namespace RADProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ModelId,Name,EngineSize,NumberOfDoors,Colour,VehicleTypeId")] Model model)
+        public ActionResult Create([Bind(Include = "ModelId,EngineSize,NumberOfDoors,Colour,VehicleTypeId,ModelName")] Model model)
         {
             if (ModelState.IsValid)
             {
@@ -55,7 +56,8 @@ namespace RADProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes.OrderBy(v => v.Name), "VehicleTypeId", "Name");
+
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "VehicleTypeId", "typeName", model.VehicleTypeId);
             return View(model);
         }
 
@@ -71,7 +73,7 @@ namespace RADProject.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes.OrderBy(m => m.Name), "VehicleTypeId", "Name", model.VehicleTypeId);
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "VehicleTypeId", "typeName", model.VehicleTypeId);
             return View(model);
         }
 
@@ -80,7 +82,7 @@ namespace RADProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ModelId,EngineSize,NumberOfDoors,Colour,VehicleTypeId")] Model model)
+        public ActionResult Edit([Bind(Include = "ModelId,EngineSize,NumberOfDoors,Colour,VehicleTypeId,ModelName")] Model model)
         {
             if (ModelState.IsValid)
             {
@@ -88,6 +90,7 @@ namespace RADProject.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.VehicleTypeId = new SelectList(db.VehicleTypes, "VehicleTypeId", "typeName", model.VehicleTypeId);
             return View(model);
         }
 

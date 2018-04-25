@@ -12,7 +12,7 @@ namespace RADProject.Controllers
 {
     public class MakesController : Controller
     {
-        private VehicleModel db = new VehicleModel();
+        private Data db = new Data();
 
         // GET: Makes
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace RADProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MakeId,Name")] Make make)
+        public ActionResult Create([Bind(Include = "MakeId,makeName")] Make make)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace RADProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MakeId,Name")] Make make)
+        public ActionResult Edit([Bind(Include = "MakeId,makeName")] Make make)
         {
             if (ModelState.IsValid)
             {

@@ -13,13 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.MakeId)
+            @Html.DisplayNameFor(model => model.Make.makeName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ModelId)
+            @Html.DisplayNameFor(model => model.Model.Colour)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Year)
+            @Html.DisplayNameFor(model => model.modelYear)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
@@ -36,13 +36,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Make.Name)
+            @Html.DisplayFor(modelItem => item.Make.makeName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Model.Name)
+            @Html.DisplayFor(modelItem => item.Model.ModelName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Year)
+            @Html.DisplayFor(modelItem => item.modelYear)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Price)
@@ -51,7 +51,7 @@
             @Html.DisplayFor(modelItem => item.SoldDate)
         </td>
         <td>
-            <img src="@item.ImageUrl" alt="Car Image" class="img-responsive" />
+            <img src="@item.ImageUrl" alt="A Car Image" class="img-responsive" width="300" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.VehicleId }) |

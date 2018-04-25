@@ -13,27 +13,27 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MakeId)
+            @Html.DisplayNameFor(model => model.Make.makeName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MakeId)
+            @Html.DisplayFor(model => model.Make.makeName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ModelId)
+            @Html.DisplayNameFor(model => model.Model.Colour)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ModelId)
+            @Html.DisplayFor(model => model.Model.Colour)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Year)
+            @Html.DisplayNameFor(model => model.modelYear)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Year)
+            @Html.DisplayFor(model => model.modelYear)
         </dd>
 
         <dt>
@@ -57,11 +57,9 @@
         </dt>
 
         <dd>
-            @if(Model.ImageUrl != null)
-            {
-                <img src="@Model.ImageUrl" alt="Car Image" />
-            }
+            @Html.DisplayFor(model => model.ImageUrl)
         </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {

@@ -12,27 +12,27 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MakeId)
+            @Html.DisplayNameFor(model => model.Make.makeName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MakeId)
+            @Html.DisplayFor(model => model.Make.makeName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ModelId)
+            @Html.DisplayNameFor(model => model.Model.ModelName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ModelId)
+            @Html.DisplayFor(model => model.Model.ModelName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Year)
+            @Html.DisplayNameFor(model => model.modelYear)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Year)
+            @Html.DisplayFor(model => model.modelYear)
         </dd>
 
         <dt>
@@ -52,12 +52,13 @@
         </dd>
 
         <dt>
-            @Html.DisplayFor(model => model.ImageUrl)
+            @Html.DisplayNameFor(model => model.ImageUrl)
         </dt>
 
         <dd>
-            <img src="@Model.ImageUrl" alt="@Model.ImageUrl" />
+            <img src="@Model.ImageUrl" alt="A Car Image" width="300" />
         </dd>
+
     </dl>
 </div>
 <p>
